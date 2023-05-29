@@ -11,4 +11,7 @@ import java.util.Optional;
 public interface AvatarRepository extends JpaRepository<Avatar, Long> {
 
     Optional<Avatar> findByStudent_Id(Long studentId);
+
+    /*@Query(value = "SELECT a.id as id, a.file_path as file_path, a.student_id as student_id FROM avatars as a", nativeQuery = true)
+    Collection<Avatar> getAll();*/
 }
