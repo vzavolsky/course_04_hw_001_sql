@@ -2,7 +2,9 @@ package com.skypro.course_03.repositories;
 
 import com.skypro.course_03.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
@@ -14,4 +16,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     //@Query(value = "SELECT s.id, s.name, s.age FROM students as s, faculties as f WHERE s.faculty_id = f.id AND s.faculty_id = :id", nativeQuery = true)
     Collection<Student> findAllByFaculty_Id(Long id);
 
+    @Query(value = "SELECT * FROM students", nativeQuery = true)
+    Collection<Student> getALlBySqlQuery();
+
+    @Query(value = "SELECT AVG(age) FROM students", nativeQuery = true)
+    Integer getMiddleAgeBySql();
+
+    @Query(value = "SELECT * FROM (SELECT * FROM students as s ORDER BY s.id DESC LIMIT :numOfStudents) as s ORDER BY s.id ASC", nativeQuery = true)
+    Collection<Student> getLastStudentsBySql(int numOfStudents);
 }

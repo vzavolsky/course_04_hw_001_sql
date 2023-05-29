@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @RestController
@@ -54,6 +55,14 @@ public class AvatarController {
                 .contentType(MediaType.parseMediaType(result.getSecond()))
                 .contentLength(result.getFirst().length)
                 .body(result.getFirst());
+    }
+
+    @GetMapping
+    public ResponseEntity<Collection<Avatar>> getAll(
+            @RequestParam Integer page,
+            @RequestParam Integer size
+    ) {
+        return ResponseEntity.ok(avatarService.getAll(page, size));
     }
 
 }

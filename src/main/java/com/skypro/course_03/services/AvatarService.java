@@ -8,6 +8,7 @@ import com.skypro.course_03.exceptions.StudentNotFoundException;
 import com.skypro.course_03.repositories.AvatarRepository;
 import com.skypro.course_03.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -82,5 +85,10 @@ public class AvatarService {
         Avatar avatar = avatarRepository.findByStudent_Id(studentId)
                 .orElseThrow(AvatarNotFoundException::new);
         return Pair.of(avatar.getData(), avatar.getMediaType());
+    }
+
+    public Collection<Avatar> getAll(Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page - 1, size);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 }

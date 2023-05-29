@@ -17,3 +17,7 @@ GET http://localhost:8080/avatar/db?studentId=2
 ###
 // Get avatar from file system.
 GET http://localhost:8080/avatar/fs?studentId=2
+
+###
+// Get all
+GET http://localhost:8080/avatar

@@ -64,4 +64,19 @@ public class StudentController {
     public ResponseEntity<Optional<Faculty>> getStudentFaculties(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentFaculties(id));
     }
+
+    @GetMapping(value = "/sql")
+    public ResponseEntity<Collection<Student>> getStudentsBySQL() {
+        return ResponseEntity.ok(studentService.getStudentsBySQL());
+    }
+
+    @GetMapping(value = "/sql-middle-age")
+    public ResponseEntity<Integer> getMiddleAgeBySql() {
+        return ResponseEntity.ok(studentService.getMiddleAgeBySql());
+    }
+
+    @GetMapping(value = "/sql-last-students")
+    public ResponseEntity<Collection<Student>> getLastStudentsBySql(@RequestParam int num) {
+        return ResponseEntity.ok(studentService.getLastStudentsBySql(num));
+    }
 }

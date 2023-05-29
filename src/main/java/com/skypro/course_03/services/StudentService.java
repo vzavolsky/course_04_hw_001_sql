@@ -73,4 +73,16 @@ public class StudentService {
         return studentRepository.findById(id)
                 .map(student -> student.getFaculty());
     }
+
+    public Collection<Student> getStudentsBySQL() {
+        return studentRepository.getALlBySqlQuery();
+    }
+
+    public Integer getMiddleAgeBySql() {
+        return studentRepository.getMiddleAgeBySql();
+    }
+
+    public Collection<Student> getLastStudentsBySql(int numOfStudents) {
+        return studentRepository.getLastStudentsBySql(numOfStudents);
+    }
 }
