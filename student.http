@@ -19,6 +19,9 @@ GET http://localhost:8080/student/12/faculty
 // Get all students
 GET http://localhost:8080/student/sql
 ###
+// Get number of students
+GET http://localhost:8080/student/sql/num
+###
 // Get middle age of students.
 GET http://localhost:8080/student/sql-middle-age
 ###

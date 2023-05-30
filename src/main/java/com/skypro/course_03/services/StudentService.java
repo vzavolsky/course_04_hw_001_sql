@@ -85,4 +85,8 @@ public class StudentService {
     public Collection<Student> getLastStudentsBySql(int numOfStudents) {
         return studentRepository.getLastStudentsBySql(numOfStudents);
     }
+
+    public Integer getAmountOfStudentsBySqlQuery() {
+        return studentRepository.getAmountOfStudentsBySqlQuery();
+    }
 }

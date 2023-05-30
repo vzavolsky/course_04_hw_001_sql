@@ -70,6 +70,11 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentsBySQL());
     }
 
+    @GetMapping(value = "/sql/num")
+    public ResponseEntity<Integer> getAmountOfStudentsBySqlQuery() {
+        return ResponseEntity.ok(studentService.getAmountOfStudentsBySqlQuery());
+    }
+
     @GetMapping(value = "/sql-middle-age")
     public ResponseEntity<Integer> getMiddleAgeBySql() {
         return ResponseEntity.ok(studentService.getMiddleAgeBySql());
