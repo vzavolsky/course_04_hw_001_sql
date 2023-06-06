@@ -19,5 +19,5 @@ GET http://localhost:8080/avatar/db?studentId=2
 GET http://localhost:8080/avatar/fs?studentId=2
 
 ###
-// Get all
-GET http://localhost:8080/avatar
+// Get all - hw 4.1 https://my.sky.pro/student-cabinet/stream-lesson/34696/homework
+GET http://localhost:8080/avatar?page=1&size=1

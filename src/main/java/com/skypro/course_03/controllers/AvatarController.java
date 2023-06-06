@@ -1,5 +1,6 @@
 package com.skypro.course_03.controllers;
 
+import com.skypro.course_03.dto.AvatarDto;
 import com.skypro.course_03.entity.Avatar;
 import com.skypro.course_03.services.AvatarService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -58,11 +60,11 @@ public class AvatarController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Avatar>> getAll(
+    public ResponseEntity<List<AvatarDto>> getPage(
             @RequestParam Integer page,
             @RequestParam Integer size
     ) {
-        return ResponseEntity.ok(avatarService.getAll(page, size));
+        return ResponseEntity.ok(avatarService.getPage(page, size));
     }
 
 }

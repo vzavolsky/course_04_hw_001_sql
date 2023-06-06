@@ -1,5 +1,6 @@
 package com.skypro.course_03.services;
 
+import com.skypro.course_03.dto.AvatarDto;
 import com.skypro.course_03.entity.Avatar;
 import com.skypro.course_03.entity.Student;
 import com.skypro.course_03.exceptions.AvatarNotFoundException;
@@ -19,9 +20,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -87,8 +88,9 @@ public class AvatarService {
         return Pair.of(avatar.getData(), avatar.getMediaType());
     }
 
-    public Collection<Avatar> getAll(Integer page, Integer size) {
+    public List<AvatarDto> getPage(Integer page, Integer size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
-        return avatarRepository.findAll(pageRequest).getContent();
+        return avatarRepository.getPage(pageRequest).stream().
+                collect(Collectors.toList());
     }
 }
