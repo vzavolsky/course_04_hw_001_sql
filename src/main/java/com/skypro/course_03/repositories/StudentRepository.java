@@ -25,4 +25,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     // Сортировал список дваждый умышленно, чтобы не выводить с последнего id. Лучшего решения не нашёл.
     @Query(value = "SELECT * FROM (SELECT * FROM students as s ORDER BY s.id DESC LIMIT :numOfStudents) as s ORDER BY s.id ASC", nativeQuery = true)
     Collection<Student> getLastStudentsBySql(int numOfStudents);
+
+    Collection<Student> getStudentsByName(String name);
 }

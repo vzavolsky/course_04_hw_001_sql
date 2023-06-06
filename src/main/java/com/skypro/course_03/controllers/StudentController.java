@@ -79,4 +79,9 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> getLastStudentsBySql(@RequestParam int num) {
         return ResponseEntity.ok(studentService.getLastStudentsBySql(num));
     }
+
+    @GetMapping(path = "/name/{name}")
+    public ResponseEntity<Collection<Student>> getAllStudentsByName(@PathVariable String name) {
+        return ResponseEntity.ok(studentService.getStudentsByName(name));
+    }
 }

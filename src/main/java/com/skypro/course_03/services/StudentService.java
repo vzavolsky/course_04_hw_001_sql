@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -84,5 +85,9 @@ public class StudentService {
 
     public Collection<Student> getLastStudentsBySql(int numOfStudents) {
         return studentRepository.getLastStudentsBySql(numOfStudents);
+    }
+
+    public Collection<Student> getStudentsByName(String name) {
+        return studentRepository.getStudentsByName(name);
     }
 }
