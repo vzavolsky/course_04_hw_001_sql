@@ -6,7 +6,6 @@ import com.skypro.course_03.repositories.FacultyRepository;
 import com.skypro.course_03.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -14,7 +13,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Service
-@Profile("dev")
+// @Profile("dev")
 // Манипуляции с классами делал в соотвествии с видео лекцией,
 // чтобы запустить через директиву Profile. Но что-то пошло не так.
 public class StudentServiceImpl implements StudentService {
