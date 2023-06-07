@@ -2,92 +2,32 @@ package com.skypro.course_03.services;
 
 import com.skypro.course_03.entity.Faculty;
 import com.skypro.course_03.entity.Student;
-import com.skypro.course_03.repositories.FacultyRepository;
-import com.skypro.course_03.repositories.StudentRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-@Service
-public class StudentService {
+public interface StudentService {
+    Collection<Student> getAll();
 
-    private final StudentRepository studentRepository;
-    private final FacultyRepository facultyRepository;
+    Optional<Student> getById(Long id);
 
-    public StudentService(StudentRepository studentRepository, FacultyRepository facultyRepository) {
-        this.studentRepository = studentRepository;
-        this.facultyRepository = facultyRepository;
-    }
+    Student add(Student student);
 
-    public Student add(Student student) {
-        student.setId(null);
-        student.setFaculty(
-                Optional.ofNullable(student.getFaculty())
-                        .filter(f -> f.getId() != null)
-                        .flatMap(f -> facultyRepository.findById(f.getId()))
-                        .orElse(null));
-        return studentRepository.save(student);
-    }
+    Optional<Student> update(Long id, Student student);
 
-    public Optional<Student> update(Long id, Student student) {
-        return studentRepository.findById(id)
-                .map(s -> {
-                    s.setName(student.getName());
-                    s.setAge(student.getAge());
-                    s.setFaculty(
-                            Optional.ofNullable(student.getFaculty())
-                                    .filter(f -> f.getId() != null)
-                                    .flatMap(f -> facultyRepository.findById(f.getId()))
-                                    .orElse(null));
-                    return studentRepository.save(s);
-                });
-    }
+    Optional<Student> deleteById(Long id);
 
-    public Optional<Student> getById(Long id) {
-        return studentRepository.findById(id);
-    }
+    Collection<Student> getStudentsByAge(int age);
 
-    public Collection<Student> getAll() {
-        return Collections.unmodifiableCollection(studentRepository.findAll());
-    }
+    Collection<Student> findByAgeBetween(int minAge, int maxAge);
 
-    public Optional<Student> deleteById(Long id) {
-        return studentRepository.findById(id)
-                .map(student -> {
-                    studentRepository.deleteById(id);
-                    return student;
-                });
-    }
+    Optional<Faculty> getStudentFaculties(Long id);
 
-    public Collection<Student> getStudentsByAge(int age) {
-        return studentRepository.getStudentsByAge(age);
-    }
+    Collection<Student> getStudentsBySQL();
 
-    public Collection<Student> findByAgeBetween(int minAge, int maxAge) {
-        return studentRepository.findByAgeBetween(minAge, maxAge);
-    }
+    Integer getMiddleAgeBySql();
 
-    public Optional<Faculty> getStudentFaculties(Long id) {
-        return studentRepository.findById(id)
-                .map(student -> student.getFaculty());
-    }
+    Collection<Student> getLastStudentsBySql(int num);
 
-    public Collection<Student> getStudentsBySQL() {
-        return studentRepository.getALlBySqlQuery();
-    }
-
-    public Integer getMiddleAgeBySql() {
-        return studentRepository.getMiddleAgeBySql();
-    }
-
-    public Collection<Student> getLastStudentsBySql(int numOfStudents) {
-        return studentRepository.getLastStudentsBySql(numOfStudents);
-    }
-
-    public Collection<Student> getStudentsByName(String name) {
-        return studentRepository.getStudentsByName(name);
-    }
+    Collection<Student> getStudentsByName(String name);
 }

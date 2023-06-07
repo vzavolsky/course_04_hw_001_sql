@@ -3,7 +3,6 @@ package com.skypro.course_03.controllers;
 import com.skypro.course_03.entity.Faculty;
 import com.skypro.course_03.entity.Student;
 import com.skypro.course_03.services.FacultyService;
-import com.skypro.course_03.services.StudentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
