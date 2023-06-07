@@ -14,7 +14,8 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Service
-//@Profile("dev") Манипуляции с классами делал в соотвествии с видео лекцией,
+@Profile("dev")
+// Манипуляции с классами делал в соотвествии с видео лекцией,
 // чтобы запустить через директиву Profile. Но что-то пошло не так.
 public class StudentServiceImpl implements StudentService {
 
