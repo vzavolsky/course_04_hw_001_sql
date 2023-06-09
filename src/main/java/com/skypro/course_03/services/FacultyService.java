@@ -2,12 +2,14 @@ package com.skypro.course_03.services;
 
 import com.skypro.course_03.entity.Faculty;
 import com.skypro.course_03.entity.Student;
+import com.skypro.course_03.exceptions.FacultyNotFoundException;
 import com.skypro.course_03.repositories.FacultyRepository;
 import com.skypro.course_03.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 
 @Service
@@ -57,5 +59,12 @@ public class FacultyService {
 
     public Collection<Student> getStudentsByFacultyId(Long id) {
         return studentRepository.findAllByFaculty_Id(id);
+    }
+
+    public String maxLengthName() {
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElseThrow(FacultyNotFoundException::new);
     }
 }

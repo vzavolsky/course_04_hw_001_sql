@@ -55,4 +55,9 @@ public class FacultyController {
     public ResponseEntity<Collection<Student>> getStudentsByFacultyId(@PathVariable Long id) {
         return ResponseEntity.ok(facultyService.getStudentsByFacultyId(id));
     }
+
+    @GetMapping(value = "/maxLengthName")
+    public ResponseEntity<String> maxLengthName() {
+        return ResponseEntity.ok(facultyService.maxLengthName());
+    }
 }

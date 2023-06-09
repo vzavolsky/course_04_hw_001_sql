@@ -3,13 +3,13 @@ package com.skypro.course_03.controllers;
 import com.skypro.course_03.entity.Faculty;
 import com.skypro.course_03.entity.Student;
 import com.skypro.course_03.services.StudentService;
-import com.skypro.course_03.services.StudentServiceImpl;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(path = "/student")
@@ -18,7 +18,7 @@ public class StudentController {
 
     private StudentService studentService;
 
-    public StudentController(StudentServiceImpl studentService) {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
@@ -81,4 +81,15 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> getAllStudentsByName(@PathVariable String name) {
         return ResponseEntity.ok(studentService.getStudentsByName(name));
     }
+
+    @GetMapping(value = "/nameStartsWithA")
+    public ResponseEntity<Stream<String>> nameStartsWithA() {
+        return ResponseEntity.ok(studentService.nameStartsWithA());
+    }
+
+    @GetMapping(value = "avgAge")
+    public ResponseEntity<Double> getAgvGage() {
+        return ResponseEntity.ok(studentService.getAgvAge());
+    }
+
 }
