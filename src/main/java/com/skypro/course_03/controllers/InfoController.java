@@ -17,7 +17,6 @@ public class InfoController {
 
     private final Integer port;
 
-
     public InfoController(InfoService infoService, @Value("${server.port}") Integer port) {
         this.infoService = infoService;
         this.port = port;
@@ -37,6 +36,30 @@ public class InfoController {
     @GetMapping(path = "/compare")
     public ResponseEntity compareParallelAndPlainStream() {
         infoService.compareParallelAndPlainStream();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/thread")
+    public ResponseEntity threadsOfStudents() {
+        infoService.threadsOfStudents();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/syncthread")
+    public ResponseEntity syncThreadsOfStudents() {
+        infoService.syncThreadsOfStudents();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/altthread")
+    public ResponseEntity altThreadsOfStudents() {
+        infoService.printStudents();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/altsyncthread")
+    public ResponseEntity altSyncThreadsOfStudents() {
+        infoService.printStudentsSync();
         return ResponseEntity.ok().build();
     }
 }

@@ -91,5 +91,4 @@ public class StudentController {
     public ResponseEntity<Double> getAgvGage() {
         return ResponseEntity.ok(studentService.getAgvAge());
     }
-
 }
