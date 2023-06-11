@@ -2,7 +2,6 @@ package com.skypro.course_03.services;
 
 import com.skypro.course_03.entity.Student;
 import com.skypro.course_03.repositories.StudentRepository;
-import liquibase.pro.packaged.S;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +19,6 @@ public class InfoService {
     private final StudentRepository studentRepository;
 
     private static final Logger LOG = LoggerFactory.getLogger(InfoService.class);
-    private StopWatch stopWatch = new StopWatch();
 
     public InfoService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -29,6 +27,7 @@ public class InfoService {
     private int couter = 0;
 
     public void compareParallelAndPlainStream() {
+        StopWatch stopWatch = new StopWatch();
         stopWatch.start("plain stream");
         Stream.iterate(1, a -> a + 1)
                 .limit(1_000_000)
@@ -45,6 +44,7 @@ public class InfoService {
     }
 
     public void checkParallelStream() {
+        StopWatch stopWatch = new StopWatch();
         stopWatch.start("plain stream");
         Stream.iterate(1L, a -> a + 1)
                 .limit(10_000L)

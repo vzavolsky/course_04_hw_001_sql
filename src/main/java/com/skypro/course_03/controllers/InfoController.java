@@ -28,37 +28,37 @@ public class InfoController {
     }
 
     @GetMapping
-    public ResponseEntity checkParallelStream() {
+    public ResponseEntity<?> checkParallelStream() {
         infoService.checkParallelStream();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(path = "/compare")
-    public ResponseEntity compareParallelAndPlainStream() {
+    public ResponseEntity<?> compareParallelAndPlainStream() {
         infoService.compareParallelAndPlainStream();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(path = "/thread")
-    public ResponseEntity threadsOfStudents() {
+    public ResponseEntity<?> threadsOfStudents() {
         infoService.threadsOfStudents();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(path = "/syncthread")
-    public ResponseEntity syncThreadsOfStudents() {
+    public ResponseEntity<?> syncThreadsOfStudents() {
         infoService.syncThreadsOfStudents();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(path = "/altthread")
-    public ResponseEntity altThreadsOfStudents() {
+    public ResponseEntity<?> altThreadsOfStudents() {
         infoService.printStudents();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(path = "/altsyncthread")
-    public ResponseEntity altSyncThreadsOfStudents() {
+    public ResponseEntity<?> altSyncThreadsOfStudents() {
         infoService.printStudentsSync();
         return ResponseEntity.ok().build();
     }
